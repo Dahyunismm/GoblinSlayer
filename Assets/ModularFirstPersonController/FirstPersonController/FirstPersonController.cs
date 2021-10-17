@@ -14,8 +14,12 @@ using UnityEngine.UI;
     using System.Net;
 #endif
 
+
+
 public class FirstPersonController : MonoBehaviour
 {
+    public Interactable focus;
+
     private Rigidbody rb;
 
     #region Camera Movement Variables
@@ -142,16 +146,23 @@ public class FirstPersonController : MonoBehaviour
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
 
+        
+    }
+
+    private Animator anim;
+
+    void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+
         if (!unlimitedSprint)
         {
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
-    }
 
-    void Start()
-    {
-        if(lockCursor)
+
+        if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -282,7 +293,7 @@ public class FirstPersonController : MonoBehaviour
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV, sprintFOVStepTime * Time.deltaTime);
 
                 // Drain sprint remaining while sprinting
-                if(!unlimitedSprint)
+                if (!unlimitedSprint)
                 {
                     sprintRemaining -= 1 * Time.deltaTime;
                     if (sprintRemaining <= 0)
@@ -358,14 +369,60 @@ public class FirstPersonController : MonoBehaviour
 
         CheckGround();
 
-        if(enableHeadBob)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            Attack();
+        }
+
+        if (enableHeadBob)
+        {   
             HeadBob();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                    Debug.Log("Hello");
+                } 
+
+            }
+
         }
     }
 
-    void FixedUpdate()
+    void SetFocus(Interactable newFocus)
     {
+        if (newFocus != focus)
+        {
+            if (focus != null)
+            {
+                focus.OnDefocused();
+                focus = newFocus;
+            }
+        }
+        newFocus.OnFocused(transform);
+    }
+
+    void RemoveFocus()
+    {
+        if (focus != null)
+        {
+            focus.OnDefocused();
+        }
+        focus = null;
+    }
+
+    void FixedUpdate()
+    {   
+
         #region Movement
 
         if (playerCanMove)
@@ -382,6 +439,8 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 isWalking = false;
+                anim.SetFloat("Speed", 0);
+
             }
 
             // All movement calculations shile sprint is active
@@ -414,6 +473,8 @@ public class FirstPersonController : MonoBehaviour
                 }
 
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
+
             }
             // All movement calculations while walking
             else
@@ -435,6 +496,8 @@ public class FirstPersonController : MonoBehaviour
                 velocityChange.y = 0;
 
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
+
             }
         }
 
@@ -466,6 +529,7 @@ public class FirstPersonController : MonoBehaviour
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
+            anim.SetTrigger("Jump");
         }
 
         // When crouched and using toggle system, will uncrouch for a jump
@@ -505,6 +569,7 @@ public class FirstPersonController : MonoBehaviour
             if(isSprinting)
             {
                 timer += Time.deltaTime * (bobSpeed + sprintSpeed);
+
             }
             // Calculates HeadBob speed during crouched movement
             else if (isCrouched)
@@ -518,15 +583,24 @@ public class FirstPersonController : MonoBehaviour
             }
             // Applies HeadBob movement
             joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
+            
         }
         else
         {
             // Resets when play stops moving
             timer = 0;
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
+            
         }
     }
+
+    private void Attack()
+    {
+        anim.SetTrigger("Attack");
+    }
 }
+
+
 
 
 
