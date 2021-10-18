@@ -16,6 +16,10 @@ public class CharacterStats : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TakeDamage(10);
+        }
         
     }
 
@@ -25,6 +29,7 @@ public class CharacterStats : MonoBehaviour
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
         currentHealth -= damage;
+        Debug.Log(transform.name + " takes" + damage + " damage.");
 
         if (currentHealth <= 0)
         {
@@ -34,6 +39,6 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void Die()
     {
-
+        Debug.Log(transform.name + " died");
     }
 }

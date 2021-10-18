@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d47fdf4ac22ff4198365f0d4e44818, type: 3}
-  m_Name: StartedSword
+  m_Script: {fileID: 11500000, guid: 224ec09fd4ef5f6438558d6cc95f68b7, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  name: StarterSword
+  name: Sword
   icon: {fileID: 21300000, guid: cd775bed428fe974885c6c1a9d26176d, type: 3}
   isDefaultItem: 0
+  equipSlot: 3
+  armorModifier: 0
+  damageModifier: 5
