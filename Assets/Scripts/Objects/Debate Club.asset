@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fe39d7c669cc541a9e2ecf4c3d9c39, type: 3}
   m_Name: Debate Club
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: cd775bed428fe974885c6c1a9d26176d, type: 3}
+  sprite: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  weaponPrefab: {fileID: 7756130035294151743, guid: d91fa543c2dc095458acc072d159cced, type: 3}
+  groundItem: {fileID: 1785049234006503309, guid: 1768063618713f946a602cd4d6c48e02, type: 3}
+  AttackSpeed: 0.35
+  AttackDamage: 5

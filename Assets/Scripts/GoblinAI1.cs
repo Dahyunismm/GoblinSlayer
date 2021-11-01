@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GoblinAI1 : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class GoblinAI1 : MonoBehaviour
     public float minDamage;
     public float maxDamage;
 
+    public Slider healthSlider;
+
+    public float maxHealth;
+    public float health;
+
     private bool isAttacking = false;
 
     private float updateTime = 0;
@@ -21,6 +27,9 @@ public class GoblinAI1 : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         data = FindObjectOfType<PlayerData>();
+        healthSlider.maxValue = maxHealth;
+        health = maxHealth;
+        healthSlider.value = health;
     }
 
     public void Update()
@@ -40,6 +49,12 @@ public class GoblinAI1 : MonoBehaviour
             anim.SetBool("Attack", false);
             isAttacking = false;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        healthSlider.value = health;
     }
 
     IEnumerator Attack()
@@ -63,4 +78,5 @@ public class GoblinAI1 : MonoBehaviour
             updateTime = 0;
         }
     }
+
 }
