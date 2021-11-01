@@ -16,4 +16,4 @@ MonoBehaviour:
   weaponPrefab: {fileID: 7756130035294151743, guid: d91fa543c2dc095458acc072d159cced, type: 3}
   groundItem: {fileID: 1785049234006503309, guid: 1768063618713f946a602cd4d6c48e02, type: 3}
   AttackSpeed: 0.35
-  AttackDamage: 5
+  AttackDamage: 20

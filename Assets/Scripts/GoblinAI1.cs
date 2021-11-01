@@ -49,6 +49,13 @@ public class GoblinAI1 : MonoBehaviour
             anim.SetBool("Attack", false);
             isAttacking = false;
         }
+
+        if (health <= 0)
+        {
+            anim.SetBool("Attack", false);
+            anim.SetBool("Die", true);
+            Destroy(gameObject, 1f);
+        }
     }
 
     public void TakeDamage(float damage)
