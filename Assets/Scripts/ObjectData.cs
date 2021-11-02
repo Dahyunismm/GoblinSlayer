@@ -10,4 +10,7 @@ public class ObjectData : ScriptableObject
     public GameObject groundItem;
     public float AttackSpeed;
     public float AttackDamage;
+    public float armorValue;
+
+    public string itemType;
 }

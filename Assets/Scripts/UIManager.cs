@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
     public GameObject DialogueObj;
     public GameObject HotBarObj;
     public GameObject InventorySystem;
+    public GameObject StatsPanel;
+    public GameObject uiEmpty;
 
     private PlayerData data;
 
@@ -27,9 +29,9 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            InventorySystem.SetActive(!InventorySystem.activeSelf);
-
-            if (InventorySystem.activeSelf)
+            uiEmpty.SetActive(!uiEmpty.activeSelf);
+            data.UpdateStats();
+            if (uiEmpty.activeSelf)
             {
                 Time.timeScale = 0;
                 Cursor.visible = true;
@@ -41,10 +43,23 @@ public class UIManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 if(data.isDragged)
                 {
-                    data.DragItem(data.moveToSlot, data.data, data.isInInventory);
+                    data.DragItem(data.moveToSlot, data.data, data.isInInventory, data.isequipment);
                 }
             }
             
         }
+    }
+
+    public void ClickOnStats()
+    {
+        StatsPanel.SetActive(true);
+        InventorySystem.SetActive(false);
+    }
+
+
+    public void ClickOnInventory()
+    {
+        StatsPanel.SetActive(false);
+        InventorySystem.SetActive(true);
     }
 }
