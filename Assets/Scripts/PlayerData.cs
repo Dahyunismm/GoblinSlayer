@@ -369,7 +369,7 @@ public class PlayerData : MonoBehaviour
                     UpdateStats();
                     TempDragObj = null;
                 }
-                else if (data.itemType == "boots" && indexNum == 3)
+                else if (data.itemType == "boots" && indexNum == 2)
                 {
                     isDragged = false;
                     moveToSlot = -1;
@@ -382,7 +382,7 @@ public class PlayerData : MonoBehaviour
                     UpdateStats();
                     TempDragObj = null;
                 }
-                else if (data.itemType == "leggings" && indexNum == 2)
+                else if (data.itemType == "leggings" && indexNum == 4)
 
                 {
                     isDragged = false;

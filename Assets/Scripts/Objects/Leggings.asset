@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fe39d7c669cc541a9e2ecf4c3d9c39, type: 3}
   m_Name: Leggings
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  weaponPrefab: {fileID: 0}
-  groundItem: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b8fb302c5768e334ca82005f50e58121, type: 3}
+  weaponPrefab: {fileID: 3080820446180823686, guid: 72de715b7c2253346bdd39f0aaebd7a6, type: 3}
+  groundItem: {fileID: 6907493246331626939, guid: da3cf1b2df253644cbe9f89ada60dc34, type: 3}
   AttackSpeed: 0
   AttackDamage: 0
-  armorValue: 0
+  armorValue: 25
   itemType: leggings
