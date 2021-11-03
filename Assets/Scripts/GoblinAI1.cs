@@ -30,6 +30,7 @@ public class GoblinAI1 : MonoBehaviour
         healthSlider.maxValue = maxHealth;
         health = maxHealth;
         healthSlider.value = health;
+        player = GameObject.FindWithTag("Player");
     }
 
     public void Update()
