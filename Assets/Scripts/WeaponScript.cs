@@ -25,6 +25,7 @@ public class WeaponScript : MonoBehaviour
         }
     }
 
+    // Attacking and Attack Cooldown to avoid spamming 
     IEnumerator Attack()
     {
         if (!isAttacking)

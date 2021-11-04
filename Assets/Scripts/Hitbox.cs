@@ -31,5 +31,5 @@ public class Hitbox : MonoBehaviour
         {
             goblin.TakeDamage(damage);
         }
-    }
+    }   
 }

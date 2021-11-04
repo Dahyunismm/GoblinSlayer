@@ -8,7 +8,7 @@ public class GoblinAI1 : MonoBehaviour
 {
     private NavMeshAgent nav;
     public GameObject player;
-    public Animator anim;
+    public Animator anim;   
 
     private PlayerData data;
 
@@ -55,7 +55,7 @@ public class GoblinAI1 : MonoBehaviour
         {
             anim.SetBool("Attack", false);
             anim.SetBool("Die", true);
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, 2f);
         }
     }
 
