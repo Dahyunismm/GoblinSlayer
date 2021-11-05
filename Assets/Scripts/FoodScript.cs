@@ -34,6 +34,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 eatTimer += Time.deltaTime;
                 if (eatTimer >= eatTime)
                 {
+                    if (data.currentSaturation < 100)
+                    {
+                        data.currentSaturation += 5;
+                        data.saturationText.text = data.currentSaturation.ToString("F0") + "/" + data.maxSaturation.ToString("F0");
+                        data.saturationSlider.value = data.currentSaturation;
+                    }
                     data.lateUpdatehotbar(1f);
                     eatSlider.gameObject.SetActive(false);
                     data.Hotbar[data.curEquipped] = null;
