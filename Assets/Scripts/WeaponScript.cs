@@ -12,10 +12,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public bool isAttacking = false;
 
         private Hitbox hitbox;
+        private HitboxBoss hitboxBoss;
 
         private void Start()
         {
             hitbox = FindObjectOfType<Hitbox>();
+            hitboxBoss = FindObjectOfType<HitboxBoss>();
         }
 
         /// <summary>
@@ -38,6 +40,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!isAttacking)
             {
                 hitbox.Attack(data.AttackDamage);
+                hitboxBoss.Attack(data.AttackDamage);
                 isAttacking = true;
                 anim.SetBool("isAttacking", true);
                 yield return new WaitForSeconds(data.AttackSpeed);

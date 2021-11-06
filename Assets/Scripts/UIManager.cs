@@ -12,6 +12,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public GameObject StatsPanel;
         public GameObject uiEmpty;
         public GameObject deathscreenobj;
+        public GameObject victorycreenobj;
         public GameObject escapeScreen;
 
         private RigidbodyFirstPersonController rigid;
@@ -104,6 +105,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public void DeathScreen()
         {
             deathscreenobj.SetActive(true);
+            rigid.enabled = false;
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        public void VictoryScreen()
+        {
+            victorycreenobj.SetActive(true);
             rigid.enabled = false;
             Time.timeScale = 0;
             Cursor.visible = true;

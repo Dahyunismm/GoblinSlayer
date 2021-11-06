@@ -16,6 +16,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public float minDamage;
         public float maxDamage;
+        private UIManager manager;
+
 
         public Slider healthSlider;
 
@@ -33,6 +35,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             health = maxHealth;
             healthSlider.value = health;
             player = GameObject.FindWithTag("Player");
+            manager = FindObjectOfType<UIManager>();
         }
 
         public void Update()
@@ -58,6 +61,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 anim.SetBool("Attack", false);
                 anim.SetBool("Die", true);
                 Destroy(gameObject, 1f);
+                manager.VictoryScreen();
             }
         }
 

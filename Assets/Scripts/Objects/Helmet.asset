@@ -17,5 +17,5 @@ MonoBehaviour:
   groundItem: {fileID: 4021939242965691169, guid: 26ff5fcde0428ba4f80adffb5066c411, type: 3}
   AttackSpeed: 0
   AttackDamage: 0
-  armorValue: 20
+  armorValue: 100
   itemType: helmet

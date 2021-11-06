@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TriggerText
   - Goblin
+  - GoblinBoss
   layers:
   - Default
   - TransparentFX

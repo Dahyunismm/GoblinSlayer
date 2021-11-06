@@ -1,74 +1,88 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
-public class LightingManager : MonoBehaviour
+namespace UnityStandardAssets.Characters.FirstPerson
 {
-    //Scene References
-    [SerializeField] private Light DirectionalLight;
-    [SerializeField] private LightingPreset Preset;
-    [SerializeField] private float speedMultiplier;
-    //Variables
-    [SerializeField, Range(0, 24)] private float TimeOfDay;
-
-
-    private void Update()
+    [ExecuteAlways]
+    public class LightingManager : MonoBehaviour
     {
-        if (Preset == null)
-            return;
+        //Scene References
+        [SerializeField] private Light DirectionalLight;
+        [SerializeField] private LightingPreset Preset;
+        [SerializeField] private float speedMultiplier;
+        //Variables
+        [SerializeField, Range(0, 24)] private float TimeOfDay;
+        public GameObject[] enemies;
+        public GameObject player;
 
-        if (Application.isPlaying)
+        private float xPos;
+        private float zPos;
+        private float yPos;
+        private int randonNum;
+
+        private void Update()
         {
-            //(Replace with a reference to the game time)
-            TimeOfDay += Time.deltaTime * speedMultiplier;
-            TimeOfDay %= 24; //Modulus to ensure always between 0-24
-            UpdateLighting(TimeOfDay / 24f);
-        }
-        else
-        {
-            UpdateLighting(TimeOfDay / 24f);
-        }
-    }
+            if (Preset == null)
+                return;
 
-
-    private void UpdateLighting(float timePercent)
-    {
-        //Set ambient and fog
-        RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
-        RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
-
-        //If the directional light is set then rotate and set it's color, I actually rarely use the rotation because it casts tall shadows unless you clamp the value
-        if (DirectionalLight != null)
-        {
-            DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
-
-            DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
-        }
-
-    }
-
-    //Try to find a directional light to use if we haven't set one
-    private void OnValidate()
-    {
-        if (DirectionalLight != null)
-            return;
-
-        //Search for lighting tab sun
-        if (RenderSettings.sun != null)
-        {
-            DirectionalLight = RenderSettings.sun;
-        }
-        //Search scene for light that fits criteria (directional)
-        else
-        {
-            Light[] lights = GameObject.FindObjectsOfType<Light>();
-            foreach (Light light in lights)
+            if (Application.isPlaying)
             {
-                if (light.type == LightType.Directional)
+                //(Replace with a reference to the game time)
+                TimeOfDay += Time.deltaTime * speedMultiplier;
+                TimeOfDay %= 24; //Modulus to ensure always between 0-24
+                UpdateLighting(TimeOfDay / 24f);
+            }
+            else
+            {
+                UpdateLighting(TimeOfDay / 24f);
+            }
+            
+        }
+
+
+        private void UpdateLighting(float timePercent)
+        {
+            //Set ambient and fog
+            RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
+            RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
+
+            //If the directional light is set then rotate and set it's color, I actually rarely use the rotation because it casts tall shadows unless you clamp the value
+            if (DirectionalLight != null)
+            {
+                DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
+
+                DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
+            }
+
+        }
+
+        //Try to find a directional light to use if we haven't set one
+        private void OnValidate()
+        {
+            if (DirectionalLight != null)
+                return;
+
+            //Search for lighting tab sun
+            if (RenderSettings.sun != null)
+            {
+                DirectionalLight = RenderSettings.sun;
+            }
+            //Search scene for light that fits criteria (directional)
+            else
+            {
+                Light[] lights = GameObject.FindObjectsOfType<Light>();
+                foreach (Light light in lights)
                 {
-                    DirectionalLight = light;
-                    return;
+                    if (light.type == LightType.Directional)
+                    {
+                        DirectionalLight = light;
+                        return;
+                    }
                 }
             }
         }
+
+
     }
 }

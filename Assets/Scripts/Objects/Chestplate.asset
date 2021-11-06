@@ -17,5 +17,5 @@ MonoBehaviour:
   groundItem: {fileID: 5656810460688539211, guid: 7baf59d302a837043a84b1929ad97171, type: 3}
   AttackSpeed: 0
   AttackDamage: 0
-  armorValue: 50
+  armorValue: 200
   itemType: chestplate

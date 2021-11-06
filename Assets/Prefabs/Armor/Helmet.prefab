@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerText: {fileID: 0}
-  name: Helmet
+  name: Blue Obsidian Helmet
   pickupItem: {fileID: 11400000, guid: a10cd96355e51fc4c95f143832176d8a, type: 2}
   Parent: {fileID: 4021939242965691169}
 --- !u!1 &6226212012828603895
@@ -234,7 +234,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 338dbf9d35df70d428453cc78f8eaa18, type: 2}
+  - {fileID: 2100000, guid: 54eb0a880c35ecd4fa56b3b6c33e8aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

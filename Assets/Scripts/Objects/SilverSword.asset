@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fe39d7c669cc541a9e2ecf4c3d9c39, type: 3}
+  m_Name: SilverSword
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  weaponPrefab: {fileID: 1929891910964346851, guid: 62bc54eba6b9d9941b749b072dd3b287, type: 3}
+  groundItem: {fileID: 4443204097467668292, guid: 87e62d500c04df24d9f9a8280197dbac, type: 3}
+  AttackSpeed: 0.35
+  AttackDamage: 40
+  armorValue: 0
+  itemType: sword

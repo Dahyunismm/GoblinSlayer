@@ -60,6 +60,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public int parentItem;
         public bool isInInventory;
         public bool isequipment;
+        
 
         public GameObject DraggingSprite;
 
@@ -80,8 +81,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private GameObject CurrentEquipped;
 
+        public GameObject goblinType;
+        public Transform bossSpawnPoint;
+
         private float saturationTimer = 0;
         private float healthRegenTimer = 0;
+        public int destroyedStatueNum = 0;
+        private int bossNum = 0;
         public void Start()
         {
             healthSlider.maxValue = MaxHealth;
@@ -211,6 +217,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 TempDragObj.transform.position = Vector2.Lerp(TempDragObj.transform.position, Input.mousePosition, 0.3f);
             }
+
+            if (destroyedStatueNum == 10 && bossNum == 0)    
+            {
+                Instantiate(goblinType, bossSpawnPoint.transform.position, Quaternion.identity);
+                bossNum += 1;
+            }
         }
 
         public void lateUpdatehotbar(float time)
@@ -225,7 +237,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public void TakeDamage(float Damage)
         {
             var newDamage = Damage;
-            newDamage /= (1 + (ArmorStats / 1000));
+            newDamage /= (1 + (ArmorStats / 500));
             curHealth -= newDamage;
             healthSlider.value = curHealth;
             if (curHealth <= 0)
@@ -243,7 +255,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Time.timeScale = 1;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Application.LoadLevel("AdventureWorld");
+            SceneManager.LoadScene("AdventureWorld");
         }
 
 

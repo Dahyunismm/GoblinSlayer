@@ -680,8 +680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   anim: {fileID: 8272943599214529815}
-  minDamage: 3
-  maxDamage: 6
+  minDamage: 1
+  maxDamage: 2
   healthSlider: {fileID: 1173938682}
   maxHealth: 100
   health: 100
