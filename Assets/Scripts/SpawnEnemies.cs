@@ -17,6 +17,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public Transform spawnerPos1;
         public Transform spawnerPos2;
         public Transform spawnerPos3;
+        public ParticleSystem boom;
+        public AudioSource boomboom;
 
         private int randomNum;
 
@@ -42,11 +44,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 triggerText.text = "To Challenge an El Goblino Camp press C ";
                 if (Input.GetKeyDown(KeyCode.C))
                 {
+                    boom.Play();
+                    boomboom.Play();
                     Instantiate(goblinType, spawnerPos1.transform.position, Quaternion.identity);
                     Instantiate(goblinType, spawnerPos2.transform.position, Quaternion.identity);
                     randomNum = Random.Range(0, drop.Length);
                     Instantiate(drop[randomNum], spawner3.transform.position, Quaternion.identity);
-                    Destroy(Parent);
+                    Destroy(Parent, 0.5f);
                     data.destroyedStatueNum += 1;
                 }
             }

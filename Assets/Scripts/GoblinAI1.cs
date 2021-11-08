@@ -11,6 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private NavMeshAgent nav;
         public GameObject player;
         public Animator anim;
+        public ParticleSystem blood;
 
         private PlayerData data;
 
@@ -67,6 +68,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         /// <param name="damage">The amount of damage</param>
         public void TakeDamage(float damage)
         {
+            if (health > 0)
+            {
+                blood.Play();
+            }
             health -= damage;
             healthSlider.value = health;
         }

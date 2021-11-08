@@ -35,7 +35,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 HotBarObj.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.Tab) && !escapeScreen.activeSelf && !deathscreenobj.activeSelf)
+            if (Input.GetKeyDown(KeyCode.Tab) && !escapeScreen.activeSelf && !deathscreenobj.activeSelf && !victorycreenobj.activeSelf)
             {
                 uiEmpty.SetActive(!uiEmpty.activeSelf);
                 data.UpdateStats();
@@ -84,7 +84,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void EscapeScreen()
         {
-            if (!deathscreenobj.activeSelf)
+            if (!deathscreenobj.activeSelf && !victorycreenobj.activeSelf)
             {
                 escapeScreen.SetActive(!escapeScreen.activeSelf);
                 if (escapeScreen.activeSelf)

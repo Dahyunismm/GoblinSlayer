@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerText: {fileID: 0}
-  name: Helmet
-  pickupItem: {fileID: 11400000, guid: a10cd96355e51fc4c95f143832176d8a, type: 2}
+  name: Bronze Helmet
+  pickupItem: {fileID: 11400000, guid: 910257e63bd5c9345a708251ea09a58b, type: 2}
   Parent: {fileID: 1162642762035799391}
 --- !u!1 &8184650028809583497
 GameObject:

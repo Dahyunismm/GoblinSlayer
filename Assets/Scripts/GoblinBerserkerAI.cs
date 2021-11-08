@@ -11,6 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private NavMeshAgent nav;
         public GameObject player;
         public Animator anim;
+        public ParticleSystem blood;
 
         private PlayerData data;
 
@@ -58,17 +59,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (health <= 0)
             {
-                anim.SetBool("Attack", false);
-                anim.SetBool("Die", true);
-                Destroy(gameObject, 1f);
-                manager.VictoryScreen();
+                StartCoroutine(Die());
             }
+        }
+
+        IEnumerator Die()
+        {
+            anim.SetBool("Attack", false);
+            anim.SetBool("Die", true);
+            yield return new WaitForSeconds(3f);
+            manager.VictoryScreen();
         }
 
         public void TakeDamage(float damage)
         {
+            if (health > 0)
+            {
+                blood.Play();
+            }
             health -= damage;
             healthSlider.value = health;
+
         }
 
         IEnumerator Attack()

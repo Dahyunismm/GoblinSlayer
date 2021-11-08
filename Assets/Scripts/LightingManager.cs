@@ -16,11 +16,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public GameObject[] enemies;
         public GameObject player;
 
-        private float xPos;
-        private float zPos;
-        private float yPos;
-        private int randonNum;
-
         private void Update()
         {
             if (Preset == null)
@@ -37,7 +32,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 UpdateLighting(TimeOfDay / 24f);
             }
-            
         }
 
 

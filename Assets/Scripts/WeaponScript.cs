@@ -11,6 +11,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public bool isAttacking = false;
 
+        public AudioSource swing;
+
         private Hitbox hitbox;
         private HitboxBoss hitboxBoss;
 
@@ -39,6 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (!isAttacking)
             {
+                swing.Play();
                 hitbox.Attack(data.AttackDamage);
                 hitboxBoss.Attack(data.AttackDamage);
                 isAttacking = true;
