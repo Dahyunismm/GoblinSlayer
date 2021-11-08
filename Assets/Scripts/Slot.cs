@@ -21,6 +21,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             data = FindObjectOfType<PlayerData>();
         }
 
+        /// <summary>
+        /// Pointing with cursor and clicking on item allows the player to drag it.
+        /// </summary>
+        /// <param name="eventData"></param>
         public void OnPointerClick(PointerEventData eventData)
         {
             data.DragItem(slotNumber, Objdata, isInventory, isEquipment);

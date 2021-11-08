@@ -39,6 +39,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             manager = FindObjectOfType<UIManager>();
         }
 
+        /// <summary>
+        /// If certain distance the goblin will attack.
+        /// </summary>
         public void Update()
         {
             updateTime += Time.deltaTime;
@@ -63,6 +66,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+        /// <summary>
+        /// Animation for defeating the goblin champion and it shows the victory screen after a few seconds.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator Die()
         {
             anim.SetBool("Attack", false);
@@ -71,6 +78,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             manager.VictoryScreen();
         }
 
+        /// <summary>
+        /// Goblin taking damage and blood particle.
+        /// </summary>
+        /// <param name="damage"></param>
         public void TakeDamage(float damage)
         {
             if (health > 0)
@@ -82,6 +93,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         }
 
+        /// <summary>
+        /// Attacking animation and calculation of damage.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator Attack()
         {
             if (!isAttacking)
@@ -94,6 +109,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+        /// <summary>
+        /// Goblin will look at the player.
+        /// </summary>
         private void LateUpdate()
         {
             transform.LookAt(player.transform);

@@ -8,22 +8,34 @@ public class MainMenu : MonoBehaviour
     public Animator anim;
     public GameObject clickBegin;
 
+    /// <summary>
+    /// Enabling animation for start menu when the player clicks the screen
+    /// </summary>
     public void onClickBegin()
     {
         anim.enabled = true;
         Destroy(clickBegin);
     }
 
+    /// <summary>
+    /// Loads the scene adventure world.
+    /// </summary>
     public void onNewGame()
     {
-        Application.LoadLevel("AdventureWorld");
+        SceneManager.LoadScene("AdventureWorld");
     }
 
+    /// <summary>
+    /// Loads the scene adventure world.
+    /// </summary>
     public void tutorialWorld()
     {
-        Application.LoadLevel("GuildWorld");
+        SceneManager.LoadScene("GuildWorld");
     }
 
+    /// <summary>
+    /// Exits the game.
+    /// </summary>
     public void onQuit()
     {
         Application.Quit();

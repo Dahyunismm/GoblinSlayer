@@ -151,7 +151,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Update()
         {
-            if (healthRegenTimer < 3)
+            // Health regen of player if saturation is sufficient.
+            if (healthRegenTimer < 1)
             {
                 healthRegenTimer += Time.deltaTime;
             } else
@@ -165,6 +166,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
 
+            // Slowly decreases the saturation of the player
             if (saturationTimer < 15)
             {
                 saturationTimer += Time.deltaTime;
@@ -177,9 +179,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 saturationTimer = 0;
             }
 
+            // Using the scrollwhell for the hotbar and whichever the slot is on, it will show the item.
             if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
             {
-
                 if (curEquipped - 1 < 0)
                 {
                     curEquipped = Hotbar.Length - 1;
@@ -203,6 +205,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 EquipHotbar();
 
             }
+            
+            // Drops the item if q is pressed.
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (Hotbar[curEquipped] != null)
@@ -218,7 +222,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 TempDragObj.transform.position = Vector2.Lerp(TempDragObj.transform.position, Input.mousePosition, 0.3f);
             }
 
-            if (destroyedStatueNum == 20 && bossNum == 0)    
+
+            // Spawns the boss if the player destroys a certain amount of statue.
+            if (destroyedStatueNum == 15 && bossNum == 0)    
             {
                 bgm.Stop();
                 bossMusic.Play();
@@ -288,7 +294,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
         /// <summary>
-        /// Reload the inventory to its original state with the exclusion of a taken slot
+        /// Reload the inventory slots to its original state with the exclusion of a taken slot
         /// </summary>
         public void ReloadInventory()
         {
@@ -306,6 +312,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
         }
+        /// <summary>
+        /// Reload the Equipment Slots to its original state with the exclusion of a taken slot
+        /// </summary>
         public void ReloadEquipment()
         {
             for (int i = 0; i < equipmentSlots.Length; i++)
@@ -322,6 +331,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
         }
+
+        /// <summary>
+        /// Updates the health of the player.
+        /// </summary>
+        /// <param name="Health"></param>
         public void Heal(float Health)
         {
             curHealth += Health;
@@ -333,7 +347,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             healthText.text = curHealth.ToString("F0") + "/" + MaxHealth.ToString("F0");
         }
         /// <summary>
-        /// Draggin Item to the inventory 
+        /// Draggin Item to the inventory and Equipping System
+        /// Multiple checks if the inventory slots is for equipments.
         /// </summary>
         /// <param name="indexNum">The inventory slot number of the item</param>
         /// <param name="passingObj">The item getting passed in the inventory slots</param>
@@ -359,6 +374,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         TempDragObj.GetComponent<Image>().sprite = data.sprite;
                         isInventory = false;
                     }
+                    // If its an equipment (armor), it allows the player to drag that item to the equipment slots and updates the armor value of the player.
                     else if (!isInventory && isEquipment)
                     {
                         isDragged = true;
@@ -407,6 +423,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                     }
                 }
+                // Checks if the player is equipping the item in the right equipping slots for the armor. 
                 else if (!isInventory && isEquipment)
                 {
                     if (data.itemType == "chestplate" && indexNum == 1)

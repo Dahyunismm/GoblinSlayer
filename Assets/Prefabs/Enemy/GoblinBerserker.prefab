@@ -818,8 +818,8 @@ MonoBehaviour:
   player: {fileID: 0}
   anim: {fileID: 2222339763248337994}
   blood: {fileID: 7431131138366909281}
-  minDamage: 15
-  maxDamage: 20
+  minDamage: 10
+  maxDamage: 15
   healthSlider: {fileID: 2270703132258878267}
   maxHealth: 150
   health: 150

@@ -33,7 +33,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
         /// <summary>
-        /// If player is near the spawn banner of enemies, it will prompt a trigger text that allows the player to summon goblins 
+        /// If player is near the spawn statue of enemies, it will prompt a trigger text that allows the player to summon the goblins and it drops a random loot.
         /// </summary>
         /// <param name="other"></param>
         private void OnTriggerStay(Collider other)

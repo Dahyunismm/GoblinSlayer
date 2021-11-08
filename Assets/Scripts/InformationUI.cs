@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     public class InformationUI : MonoBehaviour
@@ -16,6 +18,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             triggerText = data.triggertext;
         }
 
+        /// <summary>
+        /// If player enters the collider prompts a message.
+        /// </summary>
+        /// <param name="other">the collider</param>
         private void OnTriggerStay(Collider other)
         {
             if (other.tag == "Player")
@@ -25,7 +31,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 triggerText.text = "Press X to begin your adventure!";
                 if (Input.GetKeyDown(KeyCode.X))
                 {
-                    Application.LoadLevel("AdventureWorld");
+                    SceneManager.LoadScene("AdventureWorld");
                 }
             }
         }

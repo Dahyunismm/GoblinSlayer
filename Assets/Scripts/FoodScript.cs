@@ -20,6 +20,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             data = FindObjectOfType<PlayerData>();
             eatSlider = data.eatSlider;
         }
+        /// <summary>
+        /// Eating mechanic, checks if the players saturation is less than 100 then and the eating cooldown is not up then it allows the player to eat.
+        /// </summary>
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))

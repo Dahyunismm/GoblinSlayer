@@ -24,8 +24,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             rigid = FindObjectOfType<RigidbodyFirstPersonController>();
             data = FindObjectOfType<PlayerData>();
         }
+
+
         private void Update()
         {
+            // Makes sure that the hotbar is closed when in a dialogue
             if (DialogueObj.activeSelf)
             {
                 HotBarObj.SetActive(false);
@@ -35,6 +38,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 HotBarObj.SetActive(true);
             }
 
+            // If the tab key is down, it pauses the game and makes the cursor is visible and if pressed again the game resumes and hides the cursor.
             if (Input.GetKeyDown(KeyCode.Tab) && !escapeScreen.activeSelf && !deathscreenobj.activeSelf && !victorycreenobj.activeSelf)
             {
                 uiEmpty.SetActive(!uiEmpty.activeSelf);
@@ -58,6 +62,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             }
 
+            // Shows the Escape Screen
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 EscapeScreen();
@@ -102,6 +107,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+        // Shows Death Screen, then freezes the time and enables the cursor.
         public void DeathScreen()
         {
             deathscreenobj.SetActive(true);
@@ -111,6 +117,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Cursor.lockState = CursorLockMode.None;
         }
 
+        // Shows Victory Screen, then freezes the time and enables the cursor.
         public void VictoryScreen()
         {
             victorycreenobj.SetActive(true);

@@ -36,6 +36,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             player = GameObject.FindWithTag("Player");
         }
 
+        /// <summary>
+        /// If the goblin is in a certain distance, the goblin will attack and if goblin's health is less than 0 plays the death animation and destroy the gameObject of that goblin
+        /// </summary>
         public void Update()
         {
             updateTime += Time.deltaTime;
